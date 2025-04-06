@@ -1,6 +1,17 @@
-<h1>My Watchlist</h1>
-<ul>
-    {% for fav in favorites %}
+<!DOCTYPE html>
+<html>
+<head><title>My Watchlist</title></head>
+<body>
+  <h1>My Favorite Players</h1>
+  {% if favorites %}
+    <ul>
+      {% for fav in favorites %}
         <li>{{ fav.player.name }} ({{ fav.player.team.name }})</li>
-    {% endfor %}
-</ul>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You haven't added any players yet.</p>
+  {% endif %}
+  <a href="/players">Back to Players</a>
+</body>
+</html>

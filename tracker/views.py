@@ -16,7 +16,7 @@ def player_list(request):
 def watchlist(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    favorites = UserFavorite.objects.filter(user=request).select_related
+    favorites = UserFavorite.objects.filter(user=request.user).select_related
     ('player')
     return render(request, 'tracker/watchlist.html', {'favorites': favorites})
 

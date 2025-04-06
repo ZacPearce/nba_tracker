@@ -1,6 +1,17 @@
-<h1>Game Logs</h1>
-<ul>
+<!DOCTYPE html>
+<html>
+<head><title>Game Logs</title></head>
+<body>
+  <h1>Game Logs</h1>
+  <ul>
     {% for log in logs %}
-        <li>{{ log.date }}: {{ log.team.name }} {{ log.team_score }} - {{ log.opponent }} {{ log.opponent_score }} | Top: {{ log.top_performer }}</li>
+      <li>
+        {{ log.date }}: {{ log.team.name }} {{ log.team_score }} -
+        {{ log.opponent }} {{ log.opponent_score }} |
+        Top Performer: {{ log.top_performer }}
+      </li>
     {% endfor %}
-</ul>
+  </ul>
+  <a href="/teams">Back to Teams</a>
+</body>
+</html>

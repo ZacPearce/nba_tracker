@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>NBA Players</title>
-</head>
+<head><title>NBA Players</title></head>
 <body>
-    <h1>NBA Players</h1>
-    <ul>
-        {% for player in players %}
-            <li>{{ player.name }} ({{ player.team.name }})</li>
-        {% endfor %}
-    </ul>
+  <h1>NBA Players</h1>
+  <ul>
+    {% for player in players %}
+      <li>{{ player.name }} ({{ player.team.name }})</li>
+    {% endfor %}
+  </ul>
+  <a href="/watchlist">Go to Watchlist</a>
 </body>
-</html> 
+</html>
