@@ -4,7 +4,7 @@ This Django web app lets users track NBA teams, players, and game logs — and s
 
 ## ✅ Features
 
-- Create/view/edit/delete:
+- Create/view/delete:
   - Teams
   - Players
   - Game logs
