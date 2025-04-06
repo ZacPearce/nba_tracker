@@ -1,14 +1,27 @@
 {% extends 'tracker/base.html' %}
-{% block title %}Game Logs{% endblock %}
 {% block content %}
-<h1 class="mb-4">Game Logs</h1>
+<h1>Game Logs</h1>
+
+<a href="{% url 'add-game-log' %}" class="btn btn-success mb-3">Add New Game Log</a>
+
 <ul class="list-group">
   {% for log in logs %}
-    <li class="list-group-item">
-      <strong>{{ log.date }}</strong>: {{ log.team.name }} {{ log.team_score }}
-      - {{ log.opponent }} {{ log.opponent_score }}<br>
-      <small>Top Performer: {{ log.top_performer }}</small>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        {{ log.date }}: {{ log.team.name }} {{ log.team_score }} - {{ log.opponent }} {{ log.opponent_score }}
+        <br><small>Top Performer: {{ log.top_performer }}</small>
+      </div>
+      <form method="post" action="{% url 'delete-game-log' log.id %}" onsubmit="return confirmDelete()" style="display:inline;">
+        {% csrf_token %}
+        <button class="btn btn-sm btn-danger">Remove</button>
+      </form>
     </li>
   {% endfor %}
 </ul>
+
+<script>
+  function confirmDelete() {
+    return confirm('Delete this game log?');
+  }
+</script>
 {% endblock %}

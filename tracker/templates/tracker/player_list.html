@@ -2,16 +2,25 @@
 {% block title %}Players{% endblock %}
 {% block content %}
 <h1 class="mb-4">NBA Players</h1>
+
+<a href="{% url 'add-player' %}" class="btn btn-success mb-3">Add New Player</a>
+
 <ul class="list-group">
   {% for player in players %}
     <li class="list-group-item d-flex justify-content-between align-items-center">
       {{ player.name }} ({{ player.team.name }})
       {% if player.id not in favorites %}
-        <a href="{% url 'add-to-watchlist' player.id %}" class="btn btn-sm btn-primary">Add</a>
+        <a href="{% url 'add-to-watchlist' player.id %}" class="btn btn-sm btn-outline-primary">Add to Watchlist</a>
       {% else %}
         <span class="badge bg-success">✓ In Watchlist</span>
       {% endif %}
     </li>
   {% endfor %}
 </ul>
+
+<script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this player?');
+  }
+</script>
 {% endblock %}

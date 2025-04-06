@@ -1,0 +1,10 @@
+{% extends 'tracker/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="post" class="card card-body shadow-sm" style="max-width: 600px;">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
