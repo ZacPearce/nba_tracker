@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All NBA Teams</title>
+</head>
+<body>
+    <h1>NBA Teams</h1>
+    <ul>
+        {% for team in teams %}
+            <li>{{ team.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
