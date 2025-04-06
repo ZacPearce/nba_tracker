@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head><title>My Watchlist</title></head>
-<body>
-  <h1>My Favorite Players</h1>
-  {% if favorites %}
-    <ul>
-      {% for fav in favorites %}
-        <li>{{ fav.player.name }} ({{ fav.player.team.name }})</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>You haven't added any players yet.</p>
-  {% endif %}
-  <a href="/players">Back to Players</a>
-</body>
-</html>
+{% extends 'tracker/base.html' %}
+{% block title %}My Watchlist{% endblock %}
+{% block content %}
+<h1>My Favorite Players</h1>
+{% if favorites %}
+<ul class="list-group">
+  {% for fav in favorites %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ fav.player.name }} ({{ fav.player.team.name }})
+      <form action="{% url 'remove-from-watchlist' fav.player.id %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-sm btn-danger">Remove</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>You haven't added any players yet.</p>
+{% endif %}
+{% endblock %}
