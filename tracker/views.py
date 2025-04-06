@@ -1,7 +1,6 @@
-from django.shortcuts import redirect, render
-from .models import Team, Player, UserFavorite, GameLog
-# Create your views here.
-
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Team, Player, GameLog, UserFavorite
+from django.contrib.auth.decorators import login_required
 
 def team_list(request):
     teams = Team.objects.all()
@@ -10,17 +9,25 @@ def team_list(request):
 
 def player_list(request):
     players = Player.objects.select_related('team').all()
-    return render(request, 'tracker/player_list.html', {'players': players})
+    favorites = []
+    if request.user.is_authenticated:
+        favorites = UserFavorite.objects.filter(user=request.user).values_list('player_id', flat=True)
+    return render(request, 'tracker/player_list.html', {'players': players, 'favorites': favorites})
 
 
+@login_required
 def watchlist(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    favorites = UserFavorite.objects.filter(user=request.user).select_related
-    ('player')
+    favorites = UserFavorite.objects.filter(user=request.user).select_related('player__team')
     return render(request, 'tracker/watchlist.html', {'favorites': favorites})
 
 
 def game_logs(request):
-    logs = GameLog.objects.select_realted('team').all()
+    logs = GameLog.objects.select_related('team').all()
     return render(request, 'tracker/game_logs.html', {'logs': logs})
+
+
+@login_required
+def add_to_watchlist(request, player_id):
+    player = get_object_or_404(Player, id=player_id)
+    UserFavorite.objects.get_or_create(user=request.user, player=player)
+    return redirect('player-list')

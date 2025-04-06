@@ -7,5 +7,6 @@ urlpatterns = [
         path('players/', views.player_list, name='player-list'),
         path('watchlist/', views.watchlist, name='watchlist'),
         path('game-logs/', views.game_logs, name='game-logs'),
+        path('add-to-watchlist/<int:player_id>/', views.add_to_watchlist, name='add-to-watchlist'),
 
 ]

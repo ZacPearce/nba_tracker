@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head><title>NBA Players</title></head>
-<body>
-  <h1>NBA Players</h1>
-  <ul>
-    {% for player in players %}
-      <li>{{ player.name }} ({{ player.team.name }})</li>
-    {% endfor %}
-  </ul>
-  <a href="/watchlist">Go to Watchlist</a>
-</body>
-</html>
+<h1>NBA Players</h1>
+<ul>
+  {% for player in players %}
+    <li>
+      {{ player.name }} ({{ player.team.name }})
+      {% if player.id not in favorites %}
+        <a href="{% url 'add-to-watchlist' player.id %}">[Add to Watchlist]</a>
+      {% else %}
+        <span style="color: green;">[✓ In Watchlist]</span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+<a href="/watchlist">Go to Watchlist</a>
