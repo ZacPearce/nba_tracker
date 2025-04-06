@@ -1,14 +1,17 @@
-<h1>NBA Players</h1>
-<ul>
+{% extends 'tracker/base.html' %}
+{% block title %}Players{% endblock %}
+{% block content %}
+<h1 class="mb-4">NBA Players</h1>
+<ul class="list-group">
   {% for player in players %}
-    <li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
       {{ player.name }} ({{ player.team.name }})
       {% if player.id not in favorites %}
-        <a href="{% url 'add-to-watchlist' player.id %}">[Add to Watchlist]</a>
+        <a href="{% url 'add-to-watchlist' player.id %}" class="btn btn-sm btn-primary">Add</a>
       {% else %}
-        <span style="color: green;">[✓ In Watchlist]</span>
+        <span class="badge bg-success">✓ In Watchlist</span>
       {% endif %}
     </li>
   {% endfor %}
 </ul>
-<a href="/watchlist">Go to Watchlist</a>
+{% endblock %}

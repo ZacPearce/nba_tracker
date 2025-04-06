@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head><title>Game Logs</title></head>
-<body>
-  <h1>Game Logs</h1>
-  <ul>
-    {% for log in logs %}
-      <li>
-        {{ log.date }}: {{ log.team.name }} {{ log.team_score }} -
-        {{ log.opponent }} {{ log.opponent_score }} |
-        Top Performer: {{ log.top_performer }}
-      </li>
-    {% endfor %}
-  </ul>
-  <a href="/teams">Back to Teams</a>
-</body>
-</html>
+{% extends 'tracker/base.html' %}
+{% block title %}Game Logs{% endblock %}
+{% block content %}
+<h1 class="mb-4">Game Logs</h1>
+<ul class="list-group">
+  {% for log in logs %}
+    <li class="list-group-item">
+      <strong>{{ log.date }}</strong>: {{ log.team.name }} {{ log.team_score }}
+      - {{ log.opponent }} {{ log.opponent_score }}<br>
+      <small>Top Performer: {{ log.top_performer }}</small>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

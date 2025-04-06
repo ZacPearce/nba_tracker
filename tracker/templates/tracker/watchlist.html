@@ -1,7 +1,8 @@
 {% extends 'tracker/base.html' %}
 {% block title %}My Watchlist{% endblock %}
 {% block content %}
-<h1>My Favorite Players</h1>
+<h1 class="mb-4">My Favorite Players</h1>
+
 {% if favorites %}
 <ul class="list-group">
   {% for fav in favorites %}
@@ -17,4 +18,6 @@
 {% else %}
 <p>You haven't added any players yet.</p>
 {% endif %}
+
+<a href="{% url 'player-list' %}" class="btn btn-success mt-4">Add New</a>
 {% endblock %}

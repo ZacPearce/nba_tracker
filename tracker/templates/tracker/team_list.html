@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>All NBA Teams</title>
-</head>
-<body>
-    <h1>NBA Teams</h1>
-    <ul>
-        {% for team in teams %}
-            <li>{{ team.name }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'tracker/base.html' %}
+{% block title %}Teams{% endblock %}
+{% block content %}
+<h1 class="mb-4">NBA Teams</h1>
+<ul class="list-group">
+  {% for team in teams %}
+    <li class="list-group-item">{{ team.name }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
