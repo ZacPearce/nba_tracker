@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.env
+*.sqlite3
+
+# Virtual environment
+env/
+venv/
+
+# Django secret key or settings
+*.log
+*.pot
+*.pyc
+*.pyo
+.DS_Store
+
+# VSCode or editor-specific
+.vscode/
+.idea/
+
+# Environment variables
+.env
+
+# Static/media (optional, for now)
+staticfiles/
+media/
+
+# OS junk
+Thumbs.db
