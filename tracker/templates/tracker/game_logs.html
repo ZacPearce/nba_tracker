@@ -1,0 +1,6 @@
+<h1>Game Logs</h1>
+<ul>
+    {% for log in logs %}
+        <li>{{ log.date }}: {{ log.team.name }} {{ log.team_score }} - {{ log.opponent }} {{ log.opponent_score }} | Top: {{ log.top_performer }}</li>
+    {% endfor %}
+</ul>

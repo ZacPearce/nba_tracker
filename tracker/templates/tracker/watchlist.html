@@ -1,0 +1,6 @@
+<h1>My Watchlist</h1>
+<ul>
+    {% for fav in favorites %}
+        <li>{{ fav.player.name }} ({{ fav.player.team.name }})</li>
+    {% endfor %}
+</ul>
