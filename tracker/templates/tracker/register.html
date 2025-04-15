@@ -1,0 +1,36 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+  <h1 class="mb-4">Register</h1>
+  <form method="post" onsubmit="return validateForm()">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Register</button>
+    <p id="error-message" class="text-danger mt-2"></p>
+  </form>
+  <script>
+    function validateForm() {
+      const username = document.getElementById('id_username').value.trim();
+      const password1 = document.getElementById('id_password1').value;
+      const password2 = document.getElementById('id_password2').value;
+      const error = document.getElementById('error-message');
+  
+      if (!username) {
+        error.textContent = "Username cannot be empty.";
+        return false;
+      }
+  
+      if (password1.length < 8) {
+        error.textContent = "Password must be at least 8 characters.";
+        return false;
+      }
+  
+      if (password1 !== password2) {
+        error.textContent = "Passwords do not match.";
+        return false;
+      }
+  
+      return true;
+    }
+  </script>
+  
+{% endblock %}

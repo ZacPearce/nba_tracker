@@ -3,14 +3,27 @@ from .models import Team, Player, GameLog, UserFavorite
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .forms import PlayerForm, TeamForm, GameLogForm
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 
 def team_list(request):
     teams = Team.objects.all()
     return render(request, 'tracker/team_list.html', {'teams': teams})
 
+
+def homepage(request):
+    return render(request, 'tracker/home.html')
+
+
 # Teams
+class RegisterView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'tracker/register.html'
+    success_url = reverse_lazy('login')
+
+
 @login_required
 def create_team(request):
     if request.method == 'POST':
@@ -21,6 +34,7 @@ def create_team(request):
     else:
         form = TeamForm()
     return render(request, 'tracker/form.html', {'form': form, 'title': 'Add Team'})
+
 
 @login_required
 def delete_team(request, team_id):
@@ -37,6 +51,7 @@ def player_list(request):
         'players': players,
         'favorites': favorites
     })
+
 
 # Players
 @login_required
@@ -81,6 +96,7 @@ def game_logs(request):
     logs = GameLog.objects.select_related('team').all()
     return render(request, 'tracker/game_logs.html', {'logs': logs})
 
+
 # Game Logs
 @login_required
 def create_game_log(request):
@@ -92,6 +108,7 @@ def create_game_log(request):
     else:
         form = GameLogForm()
     return render(request, 'tracker/form.html', {'form': form, 'title': 'Add Game Log'})
+
 
 @login_required
 def delete_game_log(request, log_id):

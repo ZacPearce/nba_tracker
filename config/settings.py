@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
-
+# test
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 LOGIN_REDIRECT_URL = '/players'
 LOGOUT_REDIRECT_URL = '/login'
@@ -84,7 +84,6 @@ DATABASES = {
     }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -103,6 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGOUT_REDIRECT_URL = 'login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
