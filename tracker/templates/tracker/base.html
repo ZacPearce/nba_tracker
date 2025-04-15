@@ -28,7 +28,7 @@
         <li class="nav-item d-flex align-items-center">
           <form method="post" action="{% url 'logout' %}" class="d-inline">
             {% csrf_token %}
-            <button type="submit" class="nav-link btn btn-link p-0" style="color: inherit; text-decoration: none;">
+            <button type="submit" class="btn nav-link btn-link p-0" style="background: none; border: none; color: white;">
               Logout
             </button>
           </form>
