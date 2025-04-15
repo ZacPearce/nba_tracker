@@ -8,14 +8,17 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
-      <a class="navbar-brand" href="/teams">NBA Tracker</a>
+      <a class="navbar-brand" href="{% url 'home' %}">NBA Tracker</a>
       <div class="navbar-nav">
         <a class="nav-link" href="/teams">Teams</a>
         <a class="nav-link" href="/players">Players</a>
         <a class="nav-link" href="/watchlist">Watchlist</a>
         <a class="nav-link" href="/game-logs">Game Logs</a>
         {% if user.is_authenticated %}
-          <a class="nav-link" href="/logout">Logout</a>
+        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-link nav-link" style="padding: 0;">Logout</button>
+        </form>        
         {% else %}
           <a class="nav-link" href="/login">Login</a>
         {% endif %}
