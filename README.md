@@ -52,4 +52,4 @@ JavaScript-powered dynamic messaging on homepage
 
 ## 🌐 Live Demo
 You can view the live project here:
-🔗 nba-tracker-4988771b9d12.herokuapp.com
+🔗 [nba-tracker-4988771b9d12.herokuapp.com](https://nba-tracker-4988771b9d12.herokuapp.com/)
