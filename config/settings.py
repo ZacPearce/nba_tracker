@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)%o)3^zx6w_v(2kw9xo%3%d+usw_7jo@gtp27648bhemj9b2-!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nba-tracker-63v5.onrender.con']
 
 
 # Application definition
